@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Components
 import Header from './components/Header'
@@ -8,10 +8,19 @@ import ButtonCustom from './elements/ButtonCustom/ButtonCustom'
 import InputCustom from './elements/InputCustom/InputCustom'
 
 const App = () => {
-  const inputsData = [{ label: 'Email' }, { label: 'Password' }]
+  const [isLogin, setIsLogin] = useState(true)
+
+  const inputsData = isLogin
+    ? [{ label: 'Email' }, { label: 'Password' }]
+    : [{ label: 'Email' }, { label: 'Login' }, { label: 'Password' }]
+
   const buttonsData = [
-    { variant: 'contained', tite: 'Login' },
-    { variant: 'Password', tite: 'Create Account' },
+    { variant: 'contained', tite: 'Login', onClick: () => setIsLogin(true) },
+    {
+      variant: 'outlined',
+      tite: 'Create Account',
+      onClick: () => setIsLogin(false),
+    },
   ]
 
   return (
@@ -58,6 +67,7 @@ const App = () => {
                   key={index}
                   variant={button.variant}
                   tite={button.tite}
+                  onClick={button.onClick}
                 />
               ))}
             </div>
