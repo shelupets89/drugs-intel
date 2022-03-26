@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-
 // Components
 import Header from './components/Header'
 
@@ -10,13 +9,16 @@ import InputCustom from './elements/InputCustom/InputCustom'
 import AvatarCustom from './elements/AvatarCustom/AvatarCustom'
 import { bgcolor } from '@mui/system'
 import { blue, blueGrey, grey, yellow } from '@mui/material/colors'
+import InputForm from './elements/InputForm/InputForm'
+
+Array.prototype.insert = function (index, item) {
+  this.splice(index, 0, item)
+}
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true)
 
-  const inputsData = isLogin
-    ? [{ label: 'Email' }, { label: 'Password' }]
-    : [{ label: 'Email' }, { label: 'Login' }, { label: 'Password' }]
+ 
 
   const buttonsData = [
     { variant: 'contained', tite: 'Login', onClick: () => setIsLogin(true) },
@@ -25,15 +27,11 @@ const App = () => {
       tite: 'Create Account',
       onClick: () => setIsLogin(false),
     },
-
-   
   ]
-  const avatarData =[
-    {sx: [500] , tite: 'G',onClick: () => setIsLogin(false), },
-    {sx: {}, tite: 'f',onClick: () => setIsLogin(false), },
-    {sx: {}, tite: 'TW',onClick: () => setIsLogin(false), },
-
-
+  const avatarData = [
+    { sx: [500], tite: 'G', onClick: () => setIsLogin(false) },
+    { sx: {}, tite: 'f', onClick: () => setIsLogin(false) },
+    { sx: {}, tite: 'TW', onClick: () => setIsLogin(false) },
   ]
 
   return (
@@ -64,14 +62,13 @@ const App = () => {
               marginBottom: '20px',
             }}
           >
+            
             <div
               style={{
                 marginBottom: '20px',
               }}
             >
-              {inputsData.map((input, index) => (
-                <InputCustom key={index} label={input.label} />
-              ))}
+             <InputForm isLogin={isLogin}/>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -87,17 +84,16 @@ const App = () => {
           </div>
 
           <div>
-            <div style={{ display: 'flex', flexDirection: 'row', }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
               {avatarData.map((avatar, index) => (
                 <AvatarCustom
-                key={index}
-                sx={avatar.sx}
-                tite={avatar.tite}
-                onClick={avatar.onClick}/>
-
+                  key={index}
+                  sx={avatar.sx}
+                  tite={avatar.tite}
+                  onClick={avatar.onClick}
+                />
               ))}
             </div>
-            
           </div>
         </div>
       </main>
