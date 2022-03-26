@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 
+
 // Components
 import Header from './components/Header'
 
 // Reusable elements
 import ButtonCustom from './elements/ButtonCustom/ButtonCustom'
 import InputCustom from './elements/InputCustom/InputCustom'
+import AvatarCustom from './elements/AvatarCustom/AvatarCustom'
+import { bgcolor } from '@mui/system'
+import { blue, blueGrey, grey, yellow } from '@mui/material/colors'
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -21,6 +25,15 @@ const App = () => {
       tite: 'Create Account',
       onClick: () => setIsLogin(false),
     },
+
+   
+  ]
+  const avatarData =[
+    {sx: [500] , tite: 'G',onClick: () => setIsLogin(false), },
+    {sx: {}, tite: 'f',onClick: () => setIsLogin(false), },
+    {sx: {}, tite: 'TW',onClick: () => setIsLogin(false), },
+
+
   ]
 
   return (
@@ -74,9 +87,17 @@ const App = () => {
           </div>
 
           <div>
-            <div>icon</div>
-            <div>icon</div>
-            <div>icon</div>
+            <div style={{ display: 'flex', flexDirection: 'row', }}>
+              {avatarData.map((avatar, index) => (
+                <AvatarCustom
+                key={index}
+                sx={avatar.sx}
+                tite={avatar.tite}
+                onClick={avatar.onClick}/>
+
+              ))}
+            </div>
+            
           </div>
         </div>
       </main>
